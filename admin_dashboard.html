@@ -70,3 +70,94 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Ankit Team LMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        .dashboard-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #333;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #388E3C;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Admin Dashboard</h2>
+        <h3>Create New Agent</h3>
+        
+        <input type="text" id="agentName" placeholder="Enter Agent Name">
+        <input type="text" id="agentUsername" placeholder="Enter Agent Username">
+        <input type="password" id="agentPassword" placeholder="Enter Password">
+        <button onclick="createAgent()">Create Agent</button>
+        
+        <h3>Registered Agents</h3>
+        <ul id="agentList"></ul>
+    </div>
+
+    <script>
+        let agents = JSON.parse(localStorage.getItem("agents")) || {};
+
+        function createAgent() {
+            let name = document.getElementById("agentName").value;
+            let username = document.getElementById("agentUsername").value;
+            let password = document.getElementById("agentPassword").value;
+
+            if (!name || !username || !password) {
+                alert("Please fill all fields");
+                return;
+            }
+
+            agents[username] = { name, password };
+            localStorage.setItem("agents", JSON.stringify(agents));
+
+            alert("Agent Created Successfully!");
+            displayAgents();
+        }
+
+        function displayAgents() {
+            let agentList = document.getElementById("agentList");
+            agentList.innerHTML = "";
+            for (let user in agents) {
+                let li = document.createElement("li");
+                li.textContent = `${agents[user].name} (${user})`;
+                agentList.appendChild(li);
+            }
+        }
+
+        window.onload = displayAgents;
+    </script>
+</body>
+</html>
