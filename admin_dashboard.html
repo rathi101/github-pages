@@ -161,3 +161,35 @@
     </script>
 </body>
 </html>
+<script>
+    let agents = JSON.parse(localStorage.getItem("agents")) || {};
+
+    function createAgent() {
+        let name = document.getElementById("agentName").value;
+        let username = document.getElementById("agentUsername").value;
+        let password = document.getElementById("agentPassword").value;
+
+        if (!name || !username || !password) {
+            alert("Please fill all fields");
+            return;
+        }
+
+        agents[username] = { name, password };
+        localStorage.setItem("agents", JSON.stringify(agents));
+
+        alert("Agent Created Successfully!");
+        displayAgents();
+    }
+
+    function displayAgents() {
+        let agentList = document.getElementById("agentList");
+        agentList.innerHTML = "";
+        for (let user in agents) {
+            let li = document.createElement("li");
+            li.textContent = `${agents[user].name} (${user})`;
+            agentList.appendChild(li);
+        }
+    }
+
+    window.onload = displayAgents;
+</script>
