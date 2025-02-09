@@ -12,24 +12,25 @@
             text-align: center;
             padding: 50px;
         }
-        .dashboard-container {
+        .container {
             background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
-            width: 60%;
-            max-width: 600px;
+            width: 70%;
+            max-width: 800px;
         }
-        h2, h3 {
+        h1, h2, h3 {
             color: #333;
             margin-bottom: 15px;
         }
-        nav {
-            margin-top: 20px;
+        nav ul {
+            list-style: none;
+            padding: 0;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            gap: 15px;
         }
         nav a {
             text-decoration: none;
@@ -37,8 +38,6 @@
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
-            margin: 10px;
-            display: inline-block;
             transition: background 0.3s;
         }
         nav a:hover {
@@ -85,19 +84,30 @@
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <h2>Admin Dashboard</h2>
-        <h3>Create New Agent</h3>
-        
-        <input type="text" id="agentName" placeholder="Enter Agent Name">
-        <input type="text" id="agentUsername" placeholder="Enter Agent Username">
-        <input type="password" id="agentPassword" placeholder="Enter Password">
-        <button onclick="createAgent()">Create Agent</button>
-        
-        <h3>Registered Agents</h3>
-        <ul id="agentList"></ul>
-
-        <button class="logout-btn" onclick="logout()">Logout</button>
+    <div class="container">
+        <header>
+            <h1>Ankit Team LMS</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="sales_executives.html">Manage Sales Executives</a></li>
+                <li><a href="daily_targets.html">Daily Targets</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Admin Dashboard</h2>
+            <h3>Create New Agent</h3>
+            <input type="text" id="agentName" placeholder="Enter Agent Name">
+            <input type="text" id="agentUsername" placeholder="Enter Agent Username">
+            <input type="password" id="agentPassword" placeholder="Enter Password">
+            <button onclick="createAgent()">Create Agent</button>
+            <h3>Registered Agents</h3>
+            <ul id="agentList"></ul>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </main>
     </div>
 
     <script>
@@ -115,7 +125,6 @@
 
             agents[username] = { name, password };
             localStorage.setItem("agents", JSON.stringify(agents));
-
             alert("Agent Created Successfully!");
             displayAgents();
         }
