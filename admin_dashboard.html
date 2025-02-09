@@ -1,10 +1,10 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="./styles.css">
+    <title>Ankit Team LMS - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             background: #e3f2fd;
@@ -21,6 +21,18 @@
         }
         h2 {
             color: #333;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
         }
         .logout-btn {
             background: #d32f2f;
@@ -40,12 +52,20 @@
     <div class="dashboard-container">
         <h2>Welcome to Admin Dashboard</h2>
         <p>Manage your Sales Executives and Set Targets.</p>
+
+        <nav>
+            <a href="sales_executives.html">Manage Sales Executives</a>
+            <a href="daily_targets.html">Daily Targets</a>
+            <a href="reports.html">Reports</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+
         <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 
     <script>
         function logout() {
-            window.location.href = 'index.html';  // Redirect back to login page
+            window.location.href = 'index.html';  // वापस Login Page पर जाए
         }
     </script>
 </body>
