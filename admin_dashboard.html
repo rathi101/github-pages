@@ -193,3 +193,20 @@
 
     window.onload = displayAgents;
 </script>
+<button onclick="exportToExcel()">Export to Excel</button>
+
+<script>
+    function exportToExcel() {
+        let csvContent = "Name,Username,Password\n";
+        for (let user in agents) {
+            let row = `${agents[user].name},${user},${agents[user].password}\n`;
+            csvContent += row;
+        }
+
+        let blob = new Blob([csvContent], { type: 'text/csv' });
+        let link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "agents_data.csv";
+        link.click();
+    }
+</script>
