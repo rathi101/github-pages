@@ -1,134 +1,84 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankit Team LMS - Login</title>
-    <link rel="stylesheet" href="./styles.css">
+    <title>Login - Ankit Team LMS</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background: linear-gradient(135deg, #b2f7b8, #d4fc79, #96e6a1, #c9f0d8);
+            background: linear-gradient(to right, #673ab7, #512da8);
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
+            color: white;
         }
         .login-container {
-            background: rgba(255, 255, 255, 0.95);
+            background: #ffffff;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             width: 350px;
             text-align: center;
+            color: black;
         }
         h2 {
+            color: #1a237e;
             margin-bottom: 20px;
-            font-size: 26px;
-            color: #333;
-            font-weight: bold;
         }
-        label {
-            display: block;
-            text-align: left;
-            font-weight: bold;
-            margin-top: 10px;
-            color: #555;
-        }
-        input, select, button {
+        input {
             width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
             border: 1px solid #ddd;
             font-size: 14px;
-            transition: 0.3s;
-        }
-        input:focus, select:focus {
-            border-color: #4caf50;
-            outline: none;
-            box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
         }
         button {
-            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            width: 100%;
+            padding: 12px;
+            background: #673ab7;
             color: white;
             border: none;
+            border-radius: 5px;
             font-size: 16px;
             font-weight: bold;
+            margin-top: 15px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: background 0.3s;
         }
         button:hover {
-            background: linear-gradient(45deg, #388e3c, #43a047);
+            background: #4527a0;
         }
-        .otp-container {
-            display: none;
-            margin-top: 10px;
+        .login-link {
+            display: block;
+            margin-top: 15px;
+            color: #673ab7;
+            text-decoration: none;
+        }
+        .login-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h2>Ankit Team LMS</h2>
-        <form id="loginForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" required>
-            
-            <label for="role">Login as:</label>
-            <select id="role">
-                <option value="admin">Admin</option>
-                <option value="agent">Agent</option>
-            </select>
-            
-            <div id="mobileField" style="display: none;">
-                <label for="mobile">Mobile Number:</label>
-                <input type="text" id="mobile" placeholder="Enter mobile number">
-                <button type="button" onclick="sendOTP()">Send OTP</button>
-            </div>
-            
-            <div id="otpField" class="otp-container">
-                <label for="otp">Enter OTP:</label>
-                <input type="text" id="otp" placeholder="Enter OTP">
-                <button type="button" onclick="verifyOTP()">Verify OTP</button>
-            </div>
-            
-            <button type="submit" id="loginButton">Login</button>
-        </form>
+        <h1>Ankit Team LMS</h1>
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button onclick="login()">Login</button>
+        <p>Select Role:</p>
+        <button onclick="location.href='admin_dashboard.html'">Admin Login</button>
+        <button onclick="location.href='agent_dashboard.html'">Agent Login</button>
+        <a href="#" class="login-link">Forgot Password?</a>
     </div>
-    
     <script>
-        document.getElementById('role').addEventListener('change', function() {
-            var role = this.value;
-            var mobileField = document.getElementById('mobileField');
-            if (role === 'admin') {
-                mobileField.style.display = 'block';
-            } else {
-                mobileField.style.display = 'none';
-            }
-        });
-
-        function sendOTP() {
-            var mobile = document.getElementById('mobile').value;
-            if (mobile.length === 10) {
-                alert("OTP sent to " + mobile);
-                document.getElementById('otpField').style.display = 'block';
-            } else {
-                alert("Enter a valid 10-digit mobile number");
-            }
-        }
-
-        function verifyOTP() {
-            var otp = document.getElementById('otp').value;
-            if (otp === "1234") {
-                alert("OTP Verified. Logging in...");
-                window.location.href = 'admin_dashboard.html';
-            } else {
-                alert("Invalid OTP. Try again.");
-            }
+        function login() {
+            alert("Login functionality coming soon!");
         }
     </script>
 </body>
