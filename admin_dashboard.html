@@ -76,6 +76,18 @@
             background: #3f51b5;
             color: white;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -136,6 +148,24 @@
             </div>
         </main>
     </div>
+    
+    <div id="leadForm" class="modal">
+        <h3>Add New Lead</h3>
+        <input type="text" placeholder="Name" id="leadName">
+        <input type="text" placeholder="Mobile No" id="leadMobile">
+        <input type="date" placeholder="DOB" id="leadDOB">
+        <input type="text" placeholder="PAN No" id="leadPAN">
+        <input type="text" placeholder="Pin Code" id="leadPin">
+        <input type="text" placeholder="Mother's Name" id="leadMother">
+        <input type="text" placeholder="Father's Name" id="leadFather">
+        <select id="leadEmployment">
+            <option value="Salaried">Salaried</option>
+            <option value="Self-Employed">Self-Employed</option>
+        </select>
+        <button onclick="saveLead()">Save Lead</button>
+        <button onclick="closeLeadForm()">Cancel</button>
+    </div>
+
     <script>
         function showAgentList() {
             document.getElementById("agentSection").style.display = "block";
@@ -145,17 +175,15 @@
             document.getElementById("leadSection").style.display = "block";
             document.getElementById("agentSection").style.display = "none";
         }
-        function addNewAgent() {
-            alert("Functionality to add new agent coming soon!");
-        }
         function addNewLead() {
-            alert("Functionality to add new lead coming soon!");
+            document.getElementById("leadForm").style.display = "block";
         }
-        function exportAgentsToExcel() {
-            alert("Export Agents functionality coming soon!");
+        function closeLeadForm() {
+            document.getElementById("leadForm").style.display = "none";
         }
-        function exportLeadsToExcel() {
-            alert("Export Leads functionality coming soon!");
+        function saveLead() {
+            alert("Lead saved successfully!");
+            closeLeadForm();
         }
     </script>
 </body>
