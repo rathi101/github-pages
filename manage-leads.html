@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Leads - Ankit Team LMS</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background: #e8f5e9;
+        }
+        .main-content {
+            margin-left: 270px;
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .manage-leads button {
+            background: #388e3c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #4caf50;
+            color: white;
+        }
+        .delete-btn {
+            background: red;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>The Money Trunk</h2>
+        <ul>
+            <li onclick="location.href='dashboard.html'">Dashboard</li>
+            <li class="active">Manage Lead</li>
+            <li>Manage Data</li>
+            <li>Cross Sell Lead</li>
+            <li>Lead Reports</li>
+            <li>Manage Staff</li>
+            <li>Reassignment</li>
+            <li>Goal & Achievement</li>
+            <li>Call Log</li>
+            <li>Settings</li>
+            <li>Logout</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h2>Manage Leads</h2>
+        <button onclick="location.href='add-lead.html'">Add New Lead</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile No</th>
+                    <th>DOB</th>
+                    <th>PAN No</th>
+                    <th>PIN Code</th>
+                    <th>Employment</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="leadTableBody">
+                <tr>
+                    <td>Rahul Sharma</td>
+                    <td>9876543210</td>
+                    <td>01-01-1990</td>
+                    <td>ABCDE1234F</td>
+                    <td>110001</td>
+                    <td>Salaried</td>
+                    <td><button class="delete-btn" onclick="deleteLead(this)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function deleteLead(button) {
+            let row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+</body>
+</html>
