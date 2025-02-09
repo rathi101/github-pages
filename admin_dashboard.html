@@ -17,8 +17,8 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            width: 95%;
-            max-width: 1200px;
+            width: 98%;
+            max-width: 1400px;
             margin: auto;
         }
         h1, h2, h3 {
@@ -43,29 +43,21 @@
         nav a:hover {
             background: #0056b3;
         }
-        input, button {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 14px;
+        .dashboard-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
         }
-        button {
-            background: #28a745;
+        .stat-box {
+            background: #007bff;
             color: white;
+            padding: 20px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
+            width: 200px;
         }
-        button:hover {
-            background: #218838;
-        }
-        .logout-btn {
-            background: #dc3545;
-        }
-        .logout-btn:hover {
-            background: #c82333;
+        .stat-box:hover {
+            background: #0056b3;
         }
         table {
             width: 100%;
@@ -92,105 +84,78 @@
         </header>
         <nav>
             <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="sales_executives.html">Manage Sales Executives</a></li>
-                <li><a href="daily_targets.html">Daily Targets</a></li>
-                <li><a href="reports.html">Reports</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Manage Sales Executives</a></li>
+                <li><a href="#">Daily Targets</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Settings</a></li>
             </ul>
         </nav>
         <main>
             <h2>Admin Dashboard</h2>
-            <h3>Create New Agent</h3>
-            <input type="text" id="agentName" placeholder="Enter Agent Name">
-            <input type="text" id="agentUsername" placeholder="Enter Agent Username">
-            <input type="password" id="agentPassword" placeholder="Enter Password">
-            <button onclick="createAgent()">Create Agent</button>
-            <h3>Upload Agents (CSV Format)</h3>
-            <input type="file" id="fileUpload" accept=".csv">
-            <button onclick="uploadCSV()">Upload CSV</button>
-            <h3>Registered Agents</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Agent Name</th>
-                        <th>Username</th>
-                    </tr>
-                </thead>
-                <tbody id="agentList"></tbody>
-            </table>
-            <button onclick="exportToExcel()">Export to Excel</button>
-            <button class="logout-btn" onclick="logout()">Logout</button>
+            <div class="dashboard-stats">
+                <div class="stat-box" onclick="showAgentList()">Total Agents: <span id="agentCount">0</span></div>
+                <div class="stat-box" onclick="showLeadList()">Total Leads: <span id="leadCount">0</span></div>
+            </div>
+            <div id="agentSection" style="display:none;">
+                <h3>All Agents</h3>
+                <button onclick="addNewAgent()">Add New Agent</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Agent Name</th>
+                            <th>Username</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="agentList"></tbody>
+                </table>
+                <button onclick="exportAgentsToExcel()">Export Agents</button>
+            </div>
+            <div id="leadSection" style="display:none;">
+                <h3>All Leads</h3>
+                <button onclick="addNewLead()">Add New Lead</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile No</th>
+                            <th>DOB</th>
+                            <th>PAN No</th>
+                            <th>Pin Code</th>
+                            <th>Mother Name</th>
+                            <th>Father Name</th>
+                            <th>Employment Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadList"></tbody>
+                </table>
+                <button onclick="exportLeadsToExcel()">Export Leads</button>
+            </div>
         </main>
     </div>
     <script>
-        let agents = JSON.parse(localStorage.getItem("agents")) || {};
-
-        function createAgent() {
-            let name = document.getElementById("agentName").value;
-            let username = document.getElementById("agentUsername").value;
-            let password = document.getElementById("agentPassword").value;
-
-            if (!name || !username || !password) {
-                alert("Please fill all fields");
-                return;
-            }
-
-            agents[username] = { name, password };
-            localStorage.setItem("agents", JSON.stringify(agents));
-            alert("Agent Created Successfully!");
-            displayAgents();
+        function showAgentList() {
+            document.getElementById("agentSection").style.display = "block";
+            document.getElementById("leadSection").style.display = "none";
         }
-
-        function displayAgents() {
-            let agentList = document.getElementById("agentList");
-            agentList.innerHTML = "";
-            for (let user in agents) {
-                let row = `<tr><td>${agents[user].name}</td><td>${user}</td></tr>`;
-                agentList.innerHTML += row;
-            }
+        function showLeadList() {
+            document.getElementById("leadSection").style.display = "block";
+            document.getElementById("agentSection").style.display = "none";
         }
-
-        function exportToExcel() {
-            let csvContent = "Agent Name,Username\n";
-            for (let user in agents) {
-                csvContent += `${agents[user].name},${user}\n`;
-            }
-            let blob = new Blob([csvContent], { type: "text/csv" });
-            let link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "agents_list.csv";
-            link.click();
+        function addNewAgent() {
+            alert("Functionality to add new agent coming soon!");
         }
-
-        function uploadCSV() {
-            let fileInput = document.getElementById("fileUpload");
-            let file = fileInput.files[0];
-            if (!file) {
-                alert("Please select a CSV file");
-                return;
-            }
-            let reader = new FileReader();
-            reader.onload = function(event) {
-                let lines = event.target.result.split("\n");
-                for (let i = 1; i < lines.length; i++) {
-                    let [name, username] = lines[i].split(",");
-                    if (name && username) {
-                        agents[username] = { name };
-                    }
-                }
-                localStorage.setItem("agents", JSON.stringify(agents));
-                alert("CSV Uploaded Successfully!");
-                displayAgents();
-            };
-            reader.readAsText(file);
+        function addNewLead() {
+            alert("Functionality to add new lead coming soon!");
         }
-
-        function logout() {
-            window.location.href = 'index.html';
+        function exportAgentsToExcel() {
+            alert("Export Agents functionality coming soon!");
         }
-
-        window.onload = displayAgents;
+        function exportLeadsToExcel() {
+            alert("Export Leads functionality coming soon!");
+        }
     </script>
 </body>
 </html>
