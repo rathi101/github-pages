@@ -14,16 +14,22 @@
         }
         .dashboard-container {
             background: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
+            width: 60%;
+            max-width: 600px;
         }
-        h2 {
+        h2, h3 {
             color: #333;
+            margin-bottom: 15px;
         }
         nav {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         nav a {
             text-decoration: none;
@@ -31,85 +37,50 @@
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
-            margin: 5px;
+            margin: 10px;
             display: inline-block;
+            transition: background 0.3s;
         }
-        .logout-btn {
-            background: #d32f2f;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .logout-btn:hover {
-            background: #b71c1c;
-        }
-    </style>
-</head>
-<body>
-    <div class="dashboard-container">
-        <h2>Welcome to Admin Dashboard</h2>
-        <p>Manage your Sales Executives and Set Targets.</p>
-
-        <nav>
-            <a href="sales_executives.html">Manage Sales Executives</a>
-            <a href="daily_targets.html">Daily Targets</a>
-            <a href="reports.html">Reports</a>
-            <a href="settings.html">Settings</a>
-        </nav>
-
-        <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-
-    <script>
-        function logout() {
-            window.location.href = 'index.html';  // वापस Login Page पर जाए
-        }
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Ankit Team LMS</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background: #f8f9fa;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            text-align: center;
-        }
-        .dashboard-container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            color: #333;
+        nav a:hover {
+            background: #388E3C;
         }
         input, button {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0;
+            padding: 12px;
+            margin-top: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
+            font-size: 14px;
+            transition: 0.3s;
         }
         button {
             background: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
         }
         button:hover {
             background: #388E3C;
+        }
+        .logout-btn {
+            background: #d32f2f;
+            margin-top: 20px;
+        }
+        .logout-btn:hover {
+            background: #b71c1c;
+        }
+        ul {
+            text-align: left;
+            padding: 0;
+            list-style: none;
+        }
+        li {
+            background: #f8f9fa;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -125,6 +96,8 @@
         
         <h3>Registered Agents</h3>
         <ul id="agentList"></ul>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 
     <script>
@@ -157,56 +130,11 @@
             }
         }
 
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
         window.onload = displayAgents;
     </script>
 </body>
 </html>
-<script>
-    let agents = JSON.parse(localStorage.getItem("agents")) || {};
-
-    function createAgent() {
-        let name = document.getElementById("agentName").value;
-        let username = document.getElementById("agentUsername").value;
-        let password = document.getElementById("agentPassword").value;
-
-        if (!name || !username || !password) {
-            alert("Please fill all fields");
-            return;
-        }
-
-        agents[username] = { name, password };
-        localStorage.setItem("agents", JSON.stringify(agents));
-
-        alert("Agent Created Successfully!");
-        displayAgents();
-    }
-
-    function displayAgents() {
-        let agentList = document.getElementById("agentList");
-        agentList.innerHTML = "";
-        for (let user in agents) {
-            let li = document.createElement("li");
-            li.textContent = `${agents[user].name} (${user})`;
-            agentList.appendChild(li);
-        }
-    }
-
-    window.onload = displayAgents;
-</script>
-<button onclick="exportToExcel()">Export to Excel</button>
-
-<script>
-    function exportToExcel() {
-        let csvContent = "Name,Username,Password\n";
-        for (let user in agents) {
-            let row = `${agents[user].name},${user},${agents[user].password}\n`;
-            csvContent += row;
-        }
-
-        let blob = new Blob([csvContent], { type: 'text/csv' });
-        let link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "agents_data.csv";
-        link.click();
-    }
-</script>
