@@ -10,16 +10,16 @@
             background: #e3f2fd;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            padding: 20px;
         }
         .container {
             background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            display: inline-block;
-            width: 70%;
+            width: 80%;
             max-width: 800px;
+            margin: auto;
         }
         h1, h2, h3 {
             color: #333;
@@ -44,13 +44,16 @@
             background: #388E3C;
         }
         input, button {
-            width: 100%;
+            width: calc(100% - 24px);
             padding: 12px;
-            margin-top: 10px;
+            margin: 10px 0;
             border-radius: 5px;
             border: 1px solid #ddd;
             font-size: 14px;
             transition: 0.3s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         button {
             background: #4CAF50;
@@ -81,6 +84,15 @@
             padding: 10px;
             border-radius: 5px;
         }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .button-group button {
+            flex: 1;
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +118,10 @@
             <button onclick="createAgent()">Create Agent</button>
             <h3>Registered Agents</h3>
             <ul id="agentList"></ul>
-            <button class="logout-btn" onclick="logout()">Logout</button>
+            <div class="button-group">
+                <button onclick="exportToExcel()">Export to Excel</button>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
         </main>
     </div>
 
@@ -137,6 +152,18 @@
                 li.textContent = `${agents[user].name} (${user})`;
                 agentList.appendChild(li);
             }
+        }
+
+        function exportToExcel() {
+            let csvContent = "Agent Name,Username\n";
+            for (let user in agents) {
+                csvContent += `${agents[user].name},${user}\n`;
+            }
+            let blob = new Blob([csvContent], { type: "text/csv" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "agents_list.csv";
+            link.click();
         }
 
         function logout() {
