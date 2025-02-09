@@ -108,7 +108,37 @@
             transform: scale(1.05);
         }
 
-        /* Responsive */
+        /* Manage Leads Page */
+        .manage-leads {
+            margin-top: 20px;
+        }
+
+        .manage-leads button {
+            background: #388e3c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .manage-leads table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .manage-leads th, .manage-leads td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .manage-leads th {
+            background: #4caf50;
+            color: white;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 width: 200px;
@@ -121,10 +151,10 @@
 </head>
 <body>
     <div class="sidebar">
-        <h2>Ankit Team</h2>
+        <h2>The Money Trunk</h2>
         <ul>
             <li class="active">Dashboard</li>
-            <li>Manage Lead</li>
+            <li onclick="location.href='manage-leads.html'">Manage Lead</li>
             <li>Manage Data</li>
             <li>Cross Sell Lead</li>
             <li>Lead Reports</li>
