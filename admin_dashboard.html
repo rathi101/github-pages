@@ -3,190 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankit Team LMS - Admin Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background: #e3f2fd;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            width: 98%;
-            max-width: 1600px;
-            margin: auto;
-        }
-        h1, h2, h3 {
-            color: #1a237e;
-            margin-bottom: 15px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        nav a {
-            text-decoration: none;
-            background: #673ab7;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        nav a:hover {
-            background: #4527a0;
-        }
-        .dashboard-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-        .stat-box {
-            background: #ff9800;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            width: 250px;
-            font-weight: bold;
-        }
-        .stat-box:hover {
-            background: #e65100;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background: #3f51b5;
-            color: white;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            width: 300px;
-        }
-    </style>
+    <title>Admin Dashboard - Ankit Team LMS</title>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-    <div class="container">
+    <div class="sidebar">
+        <h2>The Money Trunk</h2>
+        <ul>
+            <li class="active">Dashboard</li>
+            <li>Manage Lead</li>
+            <li>Manage Data</li>
+            <li>Cross Sell Lead</li>
+            <li>Lead Reports</li>
+            <li>Manage Staff</li>
+            <li>Reassignment</li>
+            <li>Goal & Achievement</li>
+            <li>Call Log</li>
+            <li>Settings</li>
+            <li>Logout</li>
+        </ul>
+    </div>
+    <div class="main-content">
         <header>
-            <h1>Ankit Team LMS</h1>
+            <input type="text" placeholder="Search here PAN/Mobile/App No">
+            <div class="profile">ANKIT</div>
         </header>
-        <nav>
-          <button onclick="window.location.href='add_lead.html'">Add New Lead</button>
-
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="sales_executives.html">Manage Sales Executives</a></li>
-                <li><a href="#">Daily Targets</a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </nav>
-        <main>
-            <h2>Admin Dashboard</h2>
-            <div class="dashboard-stats">
-                <div class="stat-box" onclick="showAgentList()">Total Agents: <span id="agentCount">0</span></div>
-                <div class="stat-box" onclick="showLeadList()">Total Leads: <span id="leadCount">0</span></div>
-            </div>
-            <div id="agentSection" style="display:none;">
-                <h3>All Agents</h3>
-                <button onclick="addNewAgent()">Add New Agent</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Agent Name</th>
-                            <th>Username</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="agentList"></tbody>
-                </table>
-                <button onclick="exportAgentsToExcel()">Export Agents</button>
-            </div>
-            <div id="leadSection" style="display:none;">
-                <h3>All Leads</h3>
-                <button onclick="addNewLead()">Add New Lead</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Mobile No</th>
-                            <th>DOB</th>
-                            <th>PAN No</th>
-                            <th>Pin Code</th>
-                            <th>Mother Name</th>
-                            <th>Father Name</th>
-                            <th>Employment Type</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leadList"></tbody>
-                </table>
-                <button onclick="exportLeadsToExcel()">Export Leads</button>
-            </div>
-        </main>
+        <div class="dashboard-cards">
+            <div class="card">Total Lead <span>23,813</span></div>
+            <div class="card">Staff <span>135</span></div>
+            <div class="card">Approved <span>0</span></div>
+            <div class="card">Pending <span>1</span></div>
+            <div class="card">Rejected <span>0</span></div>
+            <div class="card">QUD Submit <span>23,812</span></div>
+            <div class="card">Today Leads <span>41</span></div>
+            <div class="card">Target/Achievement <span>7,539/23,813</span></div>
+        </div>
     </div>
-    
-    <div id="leadForm" class="modal">
-        <h3>Add New Lead</h3>
-        <input type="text" placeholder="Name" id="leadName">
-        <input type="text" placeholder="Mobile No" id="leadMobile">
-        <input type="date" placeholder="DOB" id="leadDOB">
-        <input type="text" placeholder="PAN No" id="leadPAN">
-        <input type="text" placeholder="Pin Code" id="leadPin">
-        <input type="text" placeholder="Mother's Name" id="leadMother">
-        <input type="text" placeholder="Father's Name" id="leadFather">
-        <select id="leadEmployment">
-            <option value="Salaried">Salaried</option>
-            <option value="Self-Employed">Self-Employed</option>
-        </select>
-        <button onclick="saveLead()">Save Lead</button>
-        <button onclick="closeLeadForm()">Cancel</button>
-    </div>
-
-    <script>
-        function showAgentList() {
-            document.getElementById("agentSection").style.display = "block";
-            document.getElementById("leadSection").style.display = "none";
-        }
-        function showLeadList() {
-            document.getElementById("leadSection").style.display = "block";
-            document.getElementById("agentSection").style.display = "none";
-        }
-        function addNewLead() {
-            document.getElementById("leadForm").style.display = "block";
-        }
-        function closeLeadForm() {
-            document.getElementById("leadForm").style.display = "none";
-        }
-        function saveLead() {
-            alert("Lead saved successfully!");
-            closeLeadForm();
-        }
-    </script>
 </body>
 </html>
