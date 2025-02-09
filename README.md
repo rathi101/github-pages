@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ankit Team LMS</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
     <div class="container">
@@ -34,6 +35,6 @@
             <button onclick="addEntry()">Add Entry</button>
         </main>
     </div>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
