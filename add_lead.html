@@ -4,66 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Lead</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background: #e3f2fd;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .form-container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            width: 50%;
-            margin: auto;
-        }
-        input, select, button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        button {
-            background: #673ab7;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #4527a0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="form-container">
-        <h3>Add New Lead</h3>
-        <input type="text" placeholder="Name" id="leadName">
-        <input type="text" placeholder="Mobile No" id="leadMobile">
-        <input type="date" placeholder="DOB" id="leadDOB">
-        <input type="text" placeholder="PAN No" id="leadPAN">
-        <input type="text" placeholder="Pin Code" id="leadPin">
-        <input type="text" placeholder="Mother's Name" id="leadMother">
-        <input type="text" placeholder="Father's Name" id="leadFather">
-        <select id="leadEmployment">
-            <option value="Salaried">Salaried</option>
-            <option value="Self-Employed">Self-Employed</option>
-        </select>
-        <button onclick="saveLead()">Save Lead</button>
-        <button onclick="goBack()">Cancel</button>
+    <div class="container">
+        <h2>Add New Lead</h2>
+        <form action="add_lead.php" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" name="mobile" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="pan_number">PAN Number:</label>
+            <input type="text" id="pan_number" name="pan_number" required>
+
+            <label for="pin_code">Pin Code:</label>
+            <input type="text" id="pin_code" name="pin_code" required>
+
+            <label for="employment_type">Employment Type:</label>
+            <select id="employment_type" name="employment_type" required>
+                <option value="Salaried">Salaried</option>
+                <option value="Self-Employed">Self-Employed</option>
+            </select>
+
+            <button type="submit">Submit Lead</button>
+        </form>
     </div>
-    
-    <script>
-        function saveLead() {
-            alert("Lead saved successfully!");
-            window.location.href = "admin_dashboard.html"; // Redirect to dashboard
-        }
-        function goBack() {
-            window.location.href = "admin_dashboard.html";
-        }
-    </script>
 </body>
 </html>
