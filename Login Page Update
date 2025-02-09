@@ -1,27 +1,33 @@
-<script>
-    const agents = {
-        "agent1": "password123",
-        "agent2": "securepass",
-        "agent3": "agent@123"
-    };
-
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        
-        let username = document.getElementById("username").value;
-        let password = document.getElementById("password").value;
-        let role = document.getElementById("role").value;
-
-        if (role === "admin") {
-            alert("Admin login successful.");
-            window.location.href = "admin_dashboard.html";
-        } else if (role === "agent") {
-            if (agents[username] && agents[username] === password) {
-                alert("Agent login successful.");
-                window.location.href = "agent_dashboard.html";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="error-msg" style="color:red; display:none;">Invalid Credentials</p>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            
+            if (username === 'rathi101' && password === '8882361439') {
+                window.location.href = 'admin_dashboard.html';
             } else {
-                alert("Invalid Agent Username or Password.");
+                document.getElementById('error-msg').style.display = 'block';
             }
-        }
-    });
-</script>
+        });
+    </script>
+</body>
+</html>
