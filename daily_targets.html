@@ -1,0 +1,53 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Targets</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Daily Targets</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="sales_executives.html">Manage Sales Executives</a></li>
+                <li><a href="daily_targets.html">Daily Targets</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Set & Update Daily Targets</h2>
+            <button onclick="setTarget()">Set Target</button>
+            <table>
+                <tr>
+                    <th>Executive Name</th>
+                    <th>Target</th>
+                    <th>Completed</th>
+                    <th>Action</th>
+                </tr>
+                <tbody id="target-list"></tbody>
+            </table>
+        </main>
+        <script>
+            function setTarget() {
+                let name = prompt("Enter Executive Name:");
+                let target = prompt("Enter Target:");
+                let completed = prompt("Enter Completed Targets:");
+                if (name && target) {
+                    let table = document.getElementById("target-list");
+                    let row = `<tr><td>${name}</td><td>${target}</td><td>${completed}</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>`;
+                    table.innerHTML += row;
+                }
+            }
+            function deleteRow(btn) {
+                btn.parentElement.parentElement.remove();
+            }
+        </script>
+    </div>
+</body>
+</html>
