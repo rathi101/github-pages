@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Lead</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="admin_dashboard.html">Dashboard</a></li>
+            <li><a href="manage_lead.html" class="active">Manage Lead</a></li>
+            <li><a href="#">Manage Data</a></li>
+            <li><a href="#">Cross Sell Lead</a></li>
+            <li><a href="#">Lead Reports</a></li>
+            <li><a href="#">Manage Staff</a></li>
+            <li><a href="#">Reassignment</a></li>
+            <li><a href="#">Goal & Achievement</a></li>
+            <li><a href="#">Call Log</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Manage Lead</h1>
+        <button onclick="window.location.href='add_lead.html'">Add New Lead</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>PAN Number</th>
+                    <th>DOB</th>
+                    <th>Address</th>
+                    <th>Mobile No</th>
+                    <th>PIN Code</th>
+                    <th>Email ID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="lead-list">
+                <!-- Leads will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let leads = JSON.parse(localStorage.getItem("leads")) || [];
+            let leadList = document.getElementById("lead-list");
+            
+            leads.forEach((lead, index) => {
+                let row = `<tr>
+                    <td>${lead.name}</td>
+                    <td>${lead.pan}</td>
+                    <td>${lead.dob}</td>
+                    <td>${lead.address}</td>
+                    <td>${lead.mobile}</td>
+                    <td>${lead.pincode}</td>
+                    <td>${lead.email}</td>
+                    <td>
+                        <button onclick="viewLead(${index})">View</button>
+                        <button onclick="deleteLead(${index})">Delete</button>
+                    </td>
+                </tr>`;
+                leadList.innerHTML += row;
+            });
+        });
+        
+        function deleteLead(index) {
+            let leads = JSON.parse(localStorage.getItem("leads")) || [];
+            leads.splice(index, 1);
+            localStorage.setItem("leads", JSON.stringify(leads));
+            location.reload();
+        }
+    </script>
+</body>
+</html>
 
