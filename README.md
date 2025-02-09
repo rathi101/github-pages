@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ankit Team LMS</title>
-    <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <div class="container">
@@ -23,16 +22,23 @@
         </nav>
         <main>
             <h2>Sales Executive Details</h2>
+            <form id="entryForm">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="text" id="designation" placeholder="Designation" required>
+                <input type="number" id="dailyTarget" placeholder="Daily Target" required>
+                <button type="button" onclick="addEntry()">Add Entry</button>
+            </form>
             <table id="salesTable">
                 <tr>
                     <th>Name</th>
                     <th>Designation</th>
                     <th>Daily Target</th>
                     <th>Target Achieved</th>
+                    <th>Progress</th>
                     <th>Actions</th>
                 </tr>
             </table>
-            <button onclick="addEntry()">Add Entry</button>
+            <button onclick="exportToCSV()">Export Data</button>
         </main>
     </div>
     <script src="./script.js"></script>
