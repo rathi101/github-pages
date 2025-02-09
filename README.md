@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,34 +12,17 @@
         </header>
         <nav>
             <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Manage Sales Executives</a></li>
-                <li><a href="#">Daily Targets</a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="sales_executives.html">Manage Sales Executives</a></li>
+                <li><a href="daily_targets.html">Daily Targets</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="settings.html">Settings</a></li>
             </ul>
         </nav>
         <main>
-            <h2>Sales Executive Details</h2>
-            <form id="entryForm">
-                <input type="text" id="name" placeholder="Name" required>
-                <input type="text" id="designation" placeholder="Designation" required>
-                <input type="number" id="dailyTarget" placeholder="Daily Target" required>
-                <button type="button" onclick="addEntry()">Add Entry</button>
-            </form>
-            <table id="salesTable">
-                <tr>
-                    <th>Name</th>
-                    <th>Designation</th>
-                    <th>Daily Target</th>
-                    <th>Target Achieved</th>
-                    <th>Progress</th>
-                    <th>Actions</th>
-                </tr>
-            </table>
-            <button onclick="exportToCSV()">Export Data</button>
+            <h2>Welcome to the Dashboard</h2>
+            <p>Select an option from the navigation menu to manage your LMS.</p>
         </main>
     </div>
-    <script src="./script.js"></script>
 </body>
 </html>
