@@ -1,0 +1,27 @@
+<script>
+    const agents = {
+        "agent1": "password123",
+        "agent2": "securepass",
+        "agent3": "agent@123"
+    };
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let role = document.getElementById("role").value;
+
+        if (role === "admin") {
+            alert("Admin login successful.");
+            window.location.href = "admin_dashboard.html";
+        } else if (role === "agent") {
+            if (agents[username] && agents[username] === password) {
+                alert("Agent login successful.");
+                window.location.href = "agent_dashboard.html";
+            } else {
+                alert("Invalid Agent Username or Password.");
+            }
+        }
+    });
+</script>
