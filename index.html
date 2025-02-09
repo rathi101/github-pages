@@ -25,6 +25,9 @@
             text-align: center;
             color: black;
         }
+        h1 {
+            color: #1a237e;
+        }
         h2 {
             color: #1a237e;
             margin-bottom: 20px;
@@ -53,14 +56,9 @@
         button:hover {
             background: #4527a0;
         }
-        .login-link {
-            display: block;
-            margin-top: 15px;
-            color: #673ab7;
-            text-decoration: none;
-        }
-        .login-link:hover {
-            text-decoration: underline;
+        .error-message {
+            color: red;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -71,14 +69,27 @@
         <input type="text" placeholder="Username" id="username">
         <input type="password" placeholder="Password" id="password">
         <button onclick="login()">Login</button>
-        <p>Select Role:</p>
-        <button onclick="location.href='admin_dashboard.html'">Admin Login</button>
-        <button onclick="location.href='agent_dashboard.html'">Agent Login</button>
-        <a href="#" class="login-link">Forgot Password?</a>
+        <p class="error-message" id="error-message"></p>
     </div>
     <script>
         function login() {
-            alert("Login functionality coming soon!");
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            // Hardcoded credentials for demo
+            const adminUsername = "admin";
+            const adminPassword = "admin123";
+            const agentUsername = "agent";
+            const agentPassword = "agent123";
+
+            if (username === adminUsername && password === adminPassword) {
+                window.location.href = 'admin_dashboard.html';
+            } else if (username === agentUsername && password === agentPassword) {
+                window.location.href = 'agent_dashboard.html';
+            } else {
+                errorMessage.textContent = "Invalid Username or Password";
+            }
         }
     </script>
 </body>
